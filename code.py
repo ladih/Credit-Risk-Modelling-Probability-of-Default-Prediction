@@ -43,10 +43,10 @@ selected_vars = [
 ]
 df_model = df_filtered[selected_vars].copy()
 
-# Numeric variables description code
+# Describe numeric variables
 df_model.describe()
 
-# Missing values code
+# Identify missing values
 missing_counts = df_model.isna().sum().sort_values(ascending=False)
 total_rows = len(df_model)
 
@@ -232,4 +232,5 @@ feature_importance.head(top_n_features)
 
 top_features = feature_importance.head(top_n_features)
 top_features.style.hide(axis='index')
+
 
