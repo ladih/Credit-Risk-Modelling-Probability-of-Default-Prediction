@@ -17,9 +17,6 @@ import matplotlib.pyplot as plt
 # Load sample dataset
 df = pd.read_csv('loan_sample.csv', low_memory=False)
 
-# Load sample dataset
-df = pd.read_csv('loan_sample.csv', low_memory=False)
-
 # Filter statuses
 target_statuses = ['Fully Paid', 'Charged Off', 'Default']
 df_filtered = df[df['loan_status'].isin(target_statuses)].copy()
@@ -235,3 +232,4 @@ feature_importance.head(top_n_features)
 
 top_features = feature_importance.head(top_n_features)
 top_features.style.hide(axis='index')
+
