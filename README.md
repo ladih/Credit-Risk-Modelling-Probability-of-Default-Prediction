@@ -6,3 +6,5 @@ Includes variable selection, data preparation, and evaluation metrics such as AU
 **Programming language:** Python
 
 **Libraries:** NumPy, pandas, scikit-learn, Matplotlib
+
+**Data Source:** Lending Club loan data (https://www.kaggle.com/datasets/adarshsng/lending-club-loan-data-csv)
