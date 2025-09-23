@@ -60,15 +60,15 @@ if len(missing_vars) > 0:
 else:
     print("No missing values found")
 
-# Replace missing values code
+# Replace missing values
 numeric_cols = df_model.select_dtypes(include=['number']).columns
 df_model[numeric_cols] = df_model[numeric_cols].fillna(df_model[numeric_cols].median())
 
-# One hot encoding code
+# One-hot encode categorical variables
 categorical_cols = ['purpose', 'home_ownership', 'application_type']
 df_model = pd.get_dummies(df_model, columns=categorical_cols, drop_first=True)
 
-# Time-based Train/test split
+# Time-based train/test split
 df_sorted = df_model.sort_values('issue_d')
 
 split_point = int(0.8 * len(df_sorted))
@@ -78,7 +78,7 @@ y_train = df_sorted.iloc[:split_point]['default']
 X_test = df_sorted.iloc[split_point:].drop(['default', 'issue_d'], axis=1)
 y_test = df_sorted.iloc[split_point:]['default']
 
-# Scaling
+# Scale data
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
@@ -113,18 +113,20 @@ print(f"\nAUC: {auc:.3f}")
 gini = 2 * auc - 1
 print(f"Gini coefficient: {gini:.3f}")
 
-# ROC plot
+# ROC curve
 plt.figure(figsize=(8,6))
 
-# Plot ROC curve
 fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+
+# Plot ROC curve
 plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (AUC = {auc:.3f})')
 
 # Plot KS point
 ks_index = (tpr - fpr).argmax()
 plt.scatter(fpr[ks_index], tpr[ks_index], color='red', s=30, label='KS point', zorder=5)
 
-plt.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--')  # random classifier line
+# Diagonal line representing a random classifier
+plt.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--')
 plt.xlim([0.0, 1.0])
 plt.ylim([0.0, 1.05])
 plt.xlabel('False Positive Rate (FPR)')
@@ -232,5 +234,6 @@ feature_importance.head(top_n_features)
 
 top_features = feature_importance.head(top_n_features)
 top_features.style.hide(axis='index')
+
 
 
