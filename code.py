@@ -184,8 +184,7 @@ def calculate_psi(train_frac, test_frac):
 psi = calculate_psi(df_train_bins['fraction_train'], df_test_bins['fraction_test'])
 print(f'PSI ({n_bins} bins): {psi:.3f}')
 
-
-# PSI plot code
+# PSI plot
 plt.figure(figsize=(8,6))
 x_mid = df_test_bins['bin'].apply(lambda x: x.mid).to_numpy()
 plt.plot(x_mid, df_train_bins['fraction_train'].to_numpy(), label='Train', marker='o')
@@ -224,7 +223,7 @@ plt.title('Calibration Plot')
 plt.legend()
 plt.show()
 
-# feature importance code
+# Feature importance
 feature_importance = pd.DataFrame({
     'Feature': X_train.columns,
     'Coefficient': model.coef_[0].round(3)
@@ -234,6 +233,7 @@ feature_importance.head(top_n_features)
 
 top_features = feature_importance.head(top_n_features)
 top_features.style.hide(axis='index')
+
 
 
 
