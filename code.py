@@ -1,7 +1,6 @@
 # Using Lending Club Loan Data,
 # https://www.kaggle.com/datasets/adarshsng/lending-club-loan-data-csv
 
-# Import libraries
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
@@ -233,6 +232,7 @@ feature_importance.head(top_n_features)
 
 top_features = feature_importance.head(top_n_features)
 top_features.style.hide(axis='index')
+
 
 
 
